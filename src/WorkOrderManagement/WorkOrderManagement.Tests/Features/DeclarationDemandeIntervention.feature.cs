@@ -17,12 +17,9 @@ namespace WorkOrderManagement.Tests.Features
     
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Reqnroll", "3.0.0.0")]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::NUnit.Framework.TestFixtureAttribute()]
-    [global::NUnit.Framework.DescriptionAttribute("Déclaration d\'une demande d\'intervention sur un équipement")]
-    [global::NUnit.Framework.FixtureLifeCycleAttribute(global::NUnit.Framework.LifeCycle.InstancePerTestCase)]
-    [global::NUnit.Framework.CategoryAttribute("WorkOrderManagement")]
-    [global::NUnit.Framework.CategoryAttribute("DemandeIntervention")]
-    public partial class DeclarationDuneDemandeDinterventionSurUnEquipementFeature
+    [global::Xunit.TraitAttribute("Category", "WorkOrderManagement")]
+    [global::Xunit.TraitAttribute("Category", "DemandeIntervention")]
+    public partial class DeclarationDuneDemandeDinterventionSurUnEquipementFeature : object, global::Xunit.IClassFixture<DeclarationDuneDemandeDinterventionSurUnEquipementFeature.FixtureData>, global::Xunit.IAsyncLifetime
     {
         
         private global::Reqnroll.ITestRunner testRunner;
@@ -35,21 +32,25 @@ namespace WorkOrderManagement.Tests.Features
                 "éclarer une demande d\'intervention pour signaler une panne\r\n    Afin que la main" +
                 "tenance soit planifiée et tracée", global::Reqnroll.ProgrammingLanguage.CSharp, featureTags, InitializeCucumberMessages());
         
+        private global::Xunit.Abstractions.ITestOutputHelper _testOutputHelper;
+        
 #line 1 "DeclarationDemandeIntervention.feature"
 #line hidden
         
-        [global::NUnit.Framework.OneTimeSetUpAttribute()]
+        public DeclarationDuneDemandeDinterventionSurUnEquipementFeature(DeclarationDuneDemandeDinterventionSurUnEquipementFeature.FixtureData fixtureData, global::Xunit.Abstractions.ITestOutputHelper testOutputHelper)
+        {
+            this._testOutputHelper = testOutputHelper;
+        }
+        
         public static async global::System.Threading.Tasks.Task FeatureSetupAsync()
         {
         }
         
-        [global::NUnit.Framework.OneTimeTearDownAttribute()]
         public static async global::System.Threading.Tasks.Task FeatureTearDownAsync()
         {
             await global::Reqnroll.TestRunnerManager.ReleaseFeatureAsync(featureInfo);
         }
         
-        [global::NUnit.Framework.SetUpAttribute()]
         public async global::System.Threading.Tasks.Task TestInitializeAsync()
         {
             testRunner = global::Reqnroll.TestRunnerManager.GetTestRunnerForAssembly(featureHint: featureInfo);
@@ -75,7 +76,6 @@ namespace WorkOrderManagement.Tests.Features
             }
         }
         
-        [global::NUnit.Framework.TearDownAttribute()]
         public async global::System.Threading.Tasks.Task TestTearDownAsync()
         {
             if ((testRunner == null))
@@ -96,7 +96,7 @@ namespace WorkOrderManagement.Tests.Features
         public void ScenarioInitialize(global::Reqnroll.ScenarioInfo scenarioInfo, global::Reqnroll.RuleInfo ruleInfo)
         {
             testRunner.OnScenarioInitialize(scenarioInfo, ruleInfo);
-            testRunner.ScenarioContext.ScenarioContainer.RegisterInstanceAs<global::NUnit.Framework.TestContext>(global::NUnit.Framework.TestContext.CurrentContext);
+            testRunner.ScenarioContext.ScenarioContainer.RegisterInstanceAs<global::Xunit.Abstractions.ITestOutputHelper>(_testOutputHelper);
         }
         
         public async global::System.Threading.Tasks.Task ScenarioStartAsync()
@@ -141,8 +141,34 @@ namespace WorkOrderManagement.Tests.Features
             return new global::Reqnroll.Formatters.RuntimeSupport.FeatureLevelCucumberMessages("Features/DeclarationDemandeIntervention.feature.ndjson", 6);
         }
         
-        [global::NUnit.Framework.TestAttribute()]
-        [global::NUnit.Framework.DescriptionAttribute("Déclaration réussie d\'une panne sur un équipement actif")]
+        async global::System.Threading.Tasks.Task global::Xunit.IAsyncLifetime.InitializeAsync()
+        {
+            try
+            {
+                await this.TestInitializeAsync();
+            }
+            catch (System.Exception e1)
+            {
+                try
+                {
+                    ((global::Xunit.IAsyncLifetime)(this)).DisposeAsync();
+                }
+                catch (System.Exception e2)
+                {
+                    throw new System.AggregateException("Test initialization failed", e1, e2);
+                }
+                throw;
+            }
+        }
+        
+        async global::System.Threading.Tasks.Task global::Xunit.IAsyncLifetime.DisposeAsync()
+        {
+            await this.TestTearDownAsync();
+        }
+        
+        [global::Xunit.SkippableFactAttribute(DisplayName="Déclaration réussie d\'une panne sur un équipement actif")]
+        [global::Xunit.TraitAttribute("FeatureTitle", "Déclaration d\'une demande d\'intervention sur un équipement")]
+        [global::Xunit.TraitAttribute("Description", "Déclaration réussie d\'une panne sur un équipement actif")]
         public async global::System.Threading.Tasks.Task DeclarationReussieDunePanneSurUnEquipementActif()
         {
             string[] tagsOfScenario = ((string[])(null));
@@ -190,8 +216,9 @@ namespace WorkOrderManagement.Tests.Features
             await this.ScenarioCleanupAsync();
         }
         
-        [global::NUnit.Framework.TestAttribute()]
-        [global::NUnit.Framework.DescriptionAttribute("Refus de déclaration sur un équipement déposé")]
+        [global::Xunit.SkippableFactAttribute(DisplayName="Refus de déclaration sur un équipement déposé")]
+        [global::Xunit.TraitAttribute("FeatureTitle", "Déclaration d\'une demande d\'intervention sur un équipement")]
+        [global::Xunit.TraitAttribute("Description", "Refus de déclaration sur un équipement déposé")]
         public async global::System.Threading.Tasks.Task RefusDeDeclarationSurUnEquipementDepose()
         {
             string[] tagsOfScenario = ((string[])(null));
@@ -229,8 +256,9 @@ namespace WorkOrderManagement.Tests.Features
             await this.ScenarioCleanupAsync();
         }
         
-        [global::NUnit.Framework.TestAttribute()]
-        [global::NUnit.Framework.DescriptionAttribute("Refus de déclaration pour un équipement inconnu du catalogue")]
+        [global::Xunit.SkippableFactAttribute(DisplayName="Refus de déclaration pour un équipement inconnu du catalogue")]
+        [global::Xunit.TraitAttribute("FeatureTitle", "Déclaration d\'une demande d\'intervention sur un équipement")]
+        [global::Xunit.TraitAttribute("Description", "Refus de déclaration pour un équipement inconnu du catalogue")]
         public async global::System.Threading.Tasks.Task RefusDeDeclarationPourUnEquipementInconnuDuCatalogue()
         {
             string[] tagsOfScenario = ((string[])(null));
@@ -268,8 +296,9 @@ namespace WorkOrderManagement.Tests.Features
             await this.ScenarioCleanupAsync();
         }
         
-        [global::NUnit.Framework.TestAttribute()]
-        [global::NUnit.Framework.DescriptionAttribute("Refus de déclaration sans description de panne")]
+        [global::Xunit.SkippableFactAttribute(DisplayName="Refus de déclaration sans description de panne")]
+        [global::Xunit.TraitAttribute("FeatureTitle", "Déclaration d\'une demande d\'intervention sur un équipement")]
+        [global::Xunit.TraitAttribute("Description", "Refus de déclaration sans description de panne")]
         public async global::System.Threading.Tasks.Task RefusDeDeclarationSansDescriptionDePanne()
         {
             string[] tagsOfScenario = ((string[])(null));
@@ -305,6 +334,22 @@ namespace WorkOrderManagement.Tests.Features
 #line hidden
             }
             await this.ScenarioCleanupAsync();
+        }
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Reqnroll", "3.0.0.0")]
+        [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+        public class FixtureData : object, global::Xunit.IAsyncLifetime
+        {
+            
+            async global::System.Threading.Tasks.Task global::Xunit.IAsyncLifetime.InitializeAsync()
+            {
+                await DeclarationDuneDemandeDinterventionSurUnEquipementFeature.FeatureSetupAsync();
+            }
+            
+            async global::System.Threading.Tasks.Task global::Xunit.IAsyncLifetime.DisposeAsync()
+            {
+                await DeclarationDuneDemandeDinterventionSurUnEquipementFeature.FeatureTearDownAsync();
+            }
         }
     }
 }

@@ -17,12 +17,9 @@ namespace AssetManagement.Tests.Features
     
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Reqnroll", "3.0.0.0")]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::NUnit.Framework.TestFixtureAttribute()]
-    [global::NUnit.Framework.DescriptionAttribute("Interprétation d\'un QR Code d\'équipement")]
-    [global::NUnit.Framework.FixtureLifeCycleAttribute(global::NUnit.Framework.LifeCycle.InstancePerTestCase)]
-    [global::NUnit.Framework.CategoryAttribute("AssetManagement")]
-    [global::NUnit.Framework.CategoryAttribute("QrCode")]
-    public partial class InterpretationDunQRCodeDequipementFeature
+    [global::Xunit.TraitAttribute("Category", "AssetManagement")]
+    [global::Xunit.TraitAttribute("Category", "QrCode")]
+    public partial class InterpretationDunQRCodeDequipementFeature : object, global::Xunit.IClassFixture<InterpretationDunQRCodeDequipementFeature.FixtureData>, global::Xunit.IAsyncLifetime
     {
         
         private global::Reqnroll.ITestRunner testRunner;
@@ -35,21 +32,25 @@ namespace AssetManagement.Tests.Features
                 "veux scanner le QR Code apposé sur un équipement\r\n    Afin d\'identifier de façon" +
                 " fiable l\'asset concerné avant toute déclaration", global::Reqnroll.ProgrammingLanguage.CSharp, featureTags, InitializeCucumberMessages());
         
+        private global::Xunit.Abstractions.ITestOutputHelper _testOutputHelper;
+        
 #line 1 "InterpretationQrCode.feature"
 #line hidden
         
-        [global::NUnit.Framework.OneTimeSetUpAttribute()]
+        public InterpretationDunQRCodeDequipementFeature(InterpretationDunQRCodeDequipementFeature.FixtureData fixtureData, global::Xunit.Abstractions.ITestOutputHelper testOutputHelper)
+        {
+            this._testOutputHelper = testOutputHelper;
+        }
+        
         public static async global::System.Threading.Tasks.Task FeatureSetupAsync()
         {
         }
         
-        [global::NUnit.Framework.OneTimeTearDownAttribute()]
         public static async global::System.Threading.Tasks.Task FeatureTearDownAsync()
         {
             await global::Reqnroll.TestRunnerManager.ReleaseFeatureAsync(featureInfo);
         }
         
-        [global::NUnit.Framework.SetUpAttribute()]
         public async global::System.Threading.Tasks.Task TestInitializeAsync()
         {
             testRunner = global::Reqnroll.TestRunnerManager.GetTestRunnerForAssembly(featureHint: featureInfo);
@@ -75,7 +76,6 @@ namespace AssetManagement.Tests.Features
             }
         }
         
-        [global::NUnit.Framework.TearDownAttribute()]
         public async global::System.Threading.Tasks.Task TestTearDownAsync()
         {
             if ((testRunner == null))
@@ -96,7 +96,7 @@ namespace AssetManagement.Tests.Features
         public void ScenarioInitialize(global::Reqnroll.ScenarioInfo scenarioInfo, global::Reqnroll.RuleInfo ruleInfo)
         {
             testRunner.OnScenarioInitialize(scenarioInfo, ruleInfo);
-            testRunner.ScenarioContext.ScenarioContainer.RegisterInstanceAs<global::NUnit.Framework.TestContext>(global::NUnit.Framework.TestContext.CurrentContext);
+            testRunner.ScenarioContext.ScenarioContainer.RegisterInstanceAs<global::Xunit.Abstractions.ITestOutputHelper>(_testOutputHelper);
         }
         
         public async global::System.Threading.Tasks.Task ScenarioStartAsync()
@@ -141,8 +141,34 @@ namespace AssetManagement.Tests.Features
             return new global::Reqnroll.Formatters.RuntimeSupport.FeatureLevelCucumberMessages("Features/InterpretationQrCode.feature.ndjson", 11);
         }
         
-        [global::NUnit.Framework.TestAttribute()]
-        [global::NUnit.Framework.DescriptionAttribute("Scan d\'un QR Code valide pointant vers un équipement actif")]
+        async global::System.Threading.Tasks.Task global::Xunit.IAsyncLifetime.InitializeAsync()
+        {
+            try
+            {
+                await this.TestInitializeAsync();
+            }
+            catch (System.Exception e1)
+            {
+                try
+                {
+                    ((global::Xunit.IAsyncLifetime)(this)).DisposeAsync();
+                }
+                catch (System.Exception e2)
+                {
+                    throw new System.AggregateException("Test initialization failed", e1, e2);
+                }
+                throw;
+            }
+        }
+        
+        async global::System.Threading.Tasks.Task global::Xunit.IAsyncLifetime.DisposeAsync()
+        {
+            await this.TestTearDownAsync();
+        }
+        
+        [global::Xunit.SkippableFactAttribute(DisplayName="Scan d\'un QR Code valide pointant vers un équipement actif")]
+        [global::Xunit.TraitAttribute("FeatureTitle", "Interprétation d\'un QR Code d\'équipement")]
+        [global::Xunit.TraitAttribute("Description", "Scan d\'un QR Code valide pointant vers un équipement actif")]
         public async global::System.Threading.Tasks.Task ScanDunQRCodeValidePointantVersUnEquipementActif()
         {
             string[] tagsOfScenario = ((string[])(null));
@@ -184,8 +210,9 @@ namespace AssetManagement.Tests.Features
             await this.ScenarioCleanupAsync();
         }
         
-        [global::NUnit.Framework.TestAttribute()]
-        [global::NUnit.Framework.DescriptionAttribute("Scan d\'un contenu qui n\'est pas une URL exploitable")]
+        [global::Xunit.SkippableFactAttribute(DisplayName="Scan d\'un contenu qui n\'est pas une URL exploitable")]
+        [global::Xunit.TraitAttribute("FeatureTitle", "Interprétation d\'un QR Code d\'équipement")]
+        [global::Xunit.TraitAttribute("Description", "Scan d\'un contenu qui n\'est pas une URL exploitable")]
         public async global::System.Threading.Tasks.Task ScanDunContenuQuiNestPasUneURLExploitable()
         {
             string[] tagsOfScenario = ((string[])(null));
@@ -220,8 +247,9 @@ namespace AssetManagement.Tests.Features
             await this.ScenarioCleanupAsync();
         }
         
-        [global::NUnit.Framework.TestAttribute()]
-        [global::NUnit.Framework.DescriptionAttribute("Scan d\'une URL valide vers un équipement absent du référentiel")]
+        [global::Xunit.SkippableFactAttribute(DisplayName="Scan d\'une URL valide vers un équipement absent du référentiel")]
+        [global::Xunit.TraitAttribute("FeatureTitle", "Interprétation d\'un QR Code d\'équipement")]
+        [global::Xunit.TraitAttribute("Description", "Scan d\'une URL valide vers un équipement absent du référentiel")]
         public async global::System.Threading.Tasks.Task ScanDuneURLValideVersUnEquipementAbsentDuReferentiel()
         {
             string[] tagsOfScenario = ((string[])(null));
@@ -257,8 +285,9 @@ namespace AssetManagement.Tests.Features
             await this.ScenarioCleanupAsync();
         }
         
-        [global::NUnit.Framework.TestAttribute()]
-        [global::NUnit.Framework.DescriptionAttribute("Scan du QR Code d\'un équipement déposé")]
+        [global::Xunit.SkippableFactAttribute(DisplayName="Scan du QR Code d\'un équipement déposé")]
+        [global::Xunit.TraitAttribute("FeatureTitle", "Interprétation d\'un QR Code d\'équipement")]
+        [global::Xunit.TraitAttribute("Description", "Scan du QR Code d\'un équipement déposé")]
         public async global::System.Threading.Tasks.Task ScanDuQRCodeDunEquipementDepose()
         {
             string[] tagsOfScenario = ((string[])(null));
@@ -297,13 +326,14 @@ namespace AssetManagement.Tests.Features
             await this.ScenarioCleanupAsync();
         }
         
-        [global::NUnit.Framework.TestAttribute()]
-        [global::NUnit.Framework.DescriptionAttribute("Robustesse de l\'extraction d\'identifiant selon le format scanné")]
-        [global::NUnit.Framework.TestCaseAttribute("https://gmao.exemple.fr/assets/3f2504e0-4f89-41d3-9a0c-0305e82c3301", "Résolu", "4", null)]
-        [global::NUnit.Framework.TestCaseAttribute("https://gmao.exemple.fr/assets/", "QR Code malformé", "5", null)]
-        [global::NUnit.Framework.TestCaseAttribute("https://gmao.exemple.fr/3f2504e0-4f89-41d3-9a0c-0305e82c3301", "QR Code malformé", "6", null)]
-        [global::NUnit.Framework.TestCaseAttribute("ftp://gmao.exemple.fr/assets/3f2504e0-4f89-41d3-9a0c-0305e82c3301", "QR Code malformé", "7", null)]
-        [global::NUnit.Framework.TestCaseAttribute("", "QR Code malformé", "8", null)]
+        [global::Xunit.SkippableTheoryAttribute(DisplayName="Robustesse de l\'extraction d\'identifiant selon le format scanné")]
+        [global::Xunit.TraitAttribute("FeatureTitle", "Interprétation d\'un QR Code d\'équipement")]
+        [global::Xunit.TraitAttribute("Description", "Robustesse de l\'extraction d\'identifiant selon le format scanné")]
+        [global::Xunit.InlineDataAttribute("https://gmao.exemple.fr/assets/3f2504e0-4f89-41d3-9a0c-0305e82c3301", "Résolu", "4", new string[0])]
+        [global::Xunit.InlineDataAttribute("https://gmao.exemple.fr/assets/", "QR Code malformé", "5", new string[0])]
+        [global::Xunit.InlineDataAttribute("https://gmao.exemple.fr/3f2504e0-4f89-41d3-9a0c-0305e82c3301", "QR Code malformé", "6", new string[0])]
+        [global::Xunit.InlineDataAttribute("ftp://gmao.exemple.fr/assets/3f2504e0-4f89-41d3-9a0c-0305e82c3301", "QR Code malformé", "7", new string[0])]
+        [global::Xunit.InlineDataAttribute("", "QR Code malformé", "8", new string[0])]
         public async global::System.Threading.Tasks.Task RobustesseDeLextractionDidentifiantSelonLeFormatScanne(string contenu, string motif, string @__pickleIndex, string[] exampleTags)
         {
             string[] tagsOfScenario = exampleTags;
@@ -338,6 +368,22 @@ namespace AssetManagement.Tests.Features
 #line hidden
             }
             await this.ScenarioCleanupAsync();
+        }
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Reqnroll", "3.0.0.0")]
+        [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+        public class FixtureData : object, global::Xunit.IAsyncLifetime
+        {
+            
+            async global::System.Threading.Tasks.Task global::Xunit.IAsyncLifetime.InitializeAsync()
+            {
+                await InterpretationDunQRCodeDequipementFeature.FeatureSetupAsync();
+            }
+            
+            async global::System.Threading.Tasks.Task global::Xunit.IAsyncLifetime.DisposeAsync()
+            {
+                await InterpretationDunQRCodeDequipementFeature.FeatureTearDownAsync();
+            }
         }
     }
 }

@@ -1,6 +1,6 @@
 using AssetManagement.Domain;
-using NUnit.Framework;
 using Reqnroll;
+using Xunit;
 
 namespace AssetManagement.Tests.Steps;
 
@@ -44,38 +44,38 @@ public sealed class InterpretationQrCodeSteps
     [Then(@"le QR Code est résolu avec succès")]
     public void LeQrCodeEstRésoluAvecSuccès()
     {
-        Assert.That(_result, Is.Not.Null);
-        Assert.That(_result!.IsResolved, Is.True, $"Issue obtenue : {_result.Outcome}");
-        Assert.That(_result.Asset, Is.Not.Null);
+        Assert.NotNull(_result);
+        Assert.True(_result!.IsResolved, $"Issue obtenue : {_result.Outcome}");
+        Assert.NotNull(_result.Asset);
     }
 
     [Then(@"l'équipement identifié porte le tag ""(.*)""")]
     public void LÉquipementIdentifiéPorteLeTag(string tag)
     {
-        Assert.That(_result?.Asset, Is.Not.Null);
-        Assert.That(_result!.Asset!.Tag, Is.EqualTo(tag));
+        Assert.NotNull(_result?.Asset);
+        Assert.Equal(tag, _result!.Asset!.Tag);
     }
 
     [Then(@"l'équipement identifié est situé à ""(.*)""")]
     public void LÉquipementIdentifiéEstSituéÀ(string location)
     {
-        Assert.That(_result?.Asset, Is.Not.Null);
-        Assert.That(_result!.Asset!.Location, Is.EqualTo(location));
+        Assert.NotNull(_result?.Asset);
+        Assert.Equal(location, _result!.Asset!.Location);
     }
 
     [Then(@"l'interprétation échoue avec le motif ""(.*)""")]
     public void LInterprétationÉchoueAvecLeMotif(string motif)
     {
-        Assert.That(_result, Is.Not.Null);
-        Assert.That(_result!.IsResolved, Is.False);
-        Assert.That(MotifLisible(_result.Outcome), Is.EqualTo(motif));
+        Assert.NotNull(_result);
+        Assert.False(_result!.IsResolved);
+        Assert.Equal(motif, MotifLisible(_result.Outcome));
     }
 
     [Then(@"l'interprétation aboutit au motif ""(.*)""")]
     public void LInterprétationAboutitAuMotif(string motif)
     {
-        Assert.That(_result, Is.Not.Null);
-        Assert.That(MotifLisible(_result!.Outcome), Is.EqualTo(motif));
+        Assert.NotNull(_result);
+        Assert.Equal(motif, MotifLisible(_result!.Outcome));
     }
 
     private static string MotifLisible(QrInterpretationOutcome outcome) => outcome switch

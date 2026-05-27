@@ -1,8 +1,8 @@
 using AssetManagement.Domain;
-using NUnit.Framework;
 using Reqnroll;
 using WorkOrderManagement.Domain;
 using WorkOrderManagement.Tests.Acl;
+using Xunit;
 
 namespace WorkOrderManagement.Tests.Steps;
 
@@ -48,45 +48,45 @@ public sealed class DeclarationDemandeInterventionSteps
     [Then(@"une demande d'intervention est créée")]
     public void UneDemandeDInterventionEstCréée()
     {
-        Assert.That(_result, Is.Not.Null);
-        Assert.That(_result!.IsSubmitted, Is.True, $"Issue obtenue : {_result.Outcome}");
-        Assert.That(_requests.All(), Has.Count.EqualTo(1));
+        Assert.NotNull(_result);
+        Assert.True(_result!.IsSubmitted, $"Issue obtenue : {_result.Outcome}");
+        Assert.Single(_requests.All());
     }
 
     [Then(@"aucune demande d'intervention n'est créée")]
     public void AucuneDemandeDInterventionNEstCréée()
     {
-        Assert.That(_result, Is.Not.Null);
-        Assert.That(_result!.IsSubmitted, Is.False);
-        Assert.That(_requests.All(), Is.Empty);
+        Assert.NotNull(_result);
+        Assert.False(_result!.IsSubmitted);
+        Assert.Empty(_requests.All());
     }
 
     [Then(@"la demande référence l'équipement ""(.*)""")]
     public void LaDemandeRéférenceLÉquipement(string label)
     {
-        Assert.That(_result?.Request, Is.Not.Null);
-        Assert.That(_result!.Request!.Asset.Label, Is.EqualTo(label));
-        Assert.That(_result.Request.Asset.AssetId, Is.EqualTo(_resolvedAssetId));
+        Assert.NotNull(_result?.Request);
+        Assert.Equal(label, _result!.Request!.Asset.Label);
+        Assert.Equal(_resolvedAssetId, _result.Request.Asset.AssetId);
     }
 
     [Then(@"la demande est en priorité ""(.*)""")]
     public void LaDemandeEstEnPriorité(string priorité)
     {
-        Assert.That(_result?.Request, Is.Not.Null);
-        Assert.That(_result!.Request!.Priority, Is.EqualTo(TraduirePriorité(priorité)));
+        Assert.NotNull(_result?.Request);
+        Assert.Equal(TraduirePriorité(priorité), _result!.Request!.Priority);
     }
 
     [Then(@"la demande est déclarée par ""(.*)""")]
     public void LaDemandeEstDéclaréePar(string technicien)
     {
-        Assert.That(_result?.Request, Is.Not.Null);
-        Assert.That(_result!.Request!.ReportedBy, Is.EqualTo(technicien));
+        Assert.NotNull(_result?.Request);
+        Assert.Equal(technicien, _result!.Request!.ReportedBy);
     }
 
     [Then(@"la demande est au statut ""(.*)""")]
     public void LaDemandeEstAuStatut(string statut)
     {
-        Assert.That(_result?.Request, Is.Not.Null);
+        Assert.NotNull(_result?.Request);
         var attendu = statut switch
         {
             "Soumise" => InterventionRequestStatus.Submitted,
@@ -94,14 +94,14 @@ public sealed class DeclarationDemandeInterventionSteps
             "Clôturée" => InterventionRequestStatus.Closed,
             var s => throw new ArgumentException($"Statut inconnu : {s}")
         };
-        Assert.That(_result!.Request!.Status, Is.EqualTo(attendu));
+        Assert.Equal(attendu, _result!.Request!.Status);
     }
 
     [Then(@"la déclaration est refusée avec le motif ""(.*)""")]
     public void LaDéclarationEstRefuséeAvecLeMotif(string motif)
     {
-        Assert.That(_result, Is.Not.Null);
-        Assert.That(MotifLisible(_result!.Outcome), Is.EqualTo(motif));
+        Assert.NotNull(_result);
+        Assert.Equal(motif, MotifLisible(_result!.Outcome));
     }
 
     private static InterventionPriority TraduirePriorité(string priorité) => priorité switch
