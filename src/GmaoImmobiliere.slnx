@@ -1,0 +1,10 @@
+<Solution>
+  <Folder Name="/AssetManagement/">
+    <Project Path="AssetManagement/AssetManagement.Domain/AssetManagement.Domain.csproj" />
+    <Project Path="AssetManagement/AssetManagement.Tests/AssetManagement.Tests.csproj" />
+  </Folder>
+  <Folder Name="/WorkOrderManagement/">
+    <Project Path="WorkOrderManagement/WorkOrderManagement.Domain/WorkOrderManagement.Domain.csproj" />
+    <Project Path="WorkOrderManagement/WorkOrderManagement.Tests/WorkOrderManagement.Tests.csproj" />
+  </Folder>
+</Solution>
