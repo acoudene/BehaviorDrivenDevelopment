@@ -1,0 +1,13 @@
+<Solution>
+  <Folder Name="/src/" />
+  <Folder Name="/src/AssetManagement/">
+    <Project Path="src/AssetManagement/AssetManagement.Domain/AssetManagement.Domain.csproj" />
+  </Folder>
+  <Folder Name="/src/WorkOrderManagement/">
+    <Project Path="src/WorkOrderManagement/WorkOrderManagement.Domain/WorkOrderManagement.Domain.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/AssetManagement.AcceptanceTests/AssetManagement.AcceptanceTests.csproj" />
+    <Project Path="tests/WorkOrderManagement.AcceptanceTests/WorkOrderManagement.AcceptanceTests.csproj" />
+  </Folder>
+</Solution>

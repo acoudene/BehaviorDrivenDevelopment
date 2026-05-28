@@ -6,6 +6,7 @@
     <Nullable>enable</Nullable>
     <IsPackable>false</IsPackable>
     <IsTestProject>true</IsTestProject>
+    <RootNamespace>AssetManagement.AcceptanceTests</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
@@ -16,10 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\WorkOrderManagement.Domain\WorkOrderManagement.Domain.csproj" />
-    <!-- Référence au contexte AssetManagement uniquement pour héberger l'adapter
-         de l'Anti-Corruption Layer (traduction Asset -> AssetReference). -->
-    <ProjectReference Include="..\..\AssetManagement\AssetManagement.Domain\AssetManagement.Domain.csproj" />
+    <ProjectReference Include="..\..\src\AssetManagement\AssetManagement.Domain\AssetManagement.Domain.csproj" />
   </ItemGroup>
 
 </Project>

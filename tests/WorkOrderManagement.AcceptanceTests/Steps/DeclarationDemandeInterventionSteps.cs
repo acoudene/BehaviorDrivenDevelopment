@@ -1,10 +1,10 @@
 using AssetManagement.Domain;
 using Reqnroll;
 using WorkOrderManagement.Domain;
-using WorkOrderManagement.Tests.Acl;
+using WorkOrderManagement.AcceptanceTests.Acl;
 using Xunit;
 
-namespace WorkOrderManagement.Tests.Steps;
+namespace WorkOrderManagement.AcceptanceTests.Steps;
 
 [Binding]
 public sealed class DeclarationDemandeInterventionSteps

@@ -11,7 +11,7 @@
 #region Designer generated code
 #pragma warning disable
 using Reqnroll;
-namespace AssetManagement.Tests.Features
+namespace AssetManagement.AcceptanceTests.Features
 {
     
     

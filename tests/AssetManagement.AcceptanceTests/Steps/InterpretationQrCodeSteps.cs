@@ -2,7 +2,7 @@ using AssetManagement.Domain;
 using Reqnroll;
 using Xunit;
 
-namespace AssetManagement.Tests.Steps;
+namespace AssetManagement.AcceptanceTests.Steps;
 
 [Binding]
 public sealed class InterpretationQrCodeSteps

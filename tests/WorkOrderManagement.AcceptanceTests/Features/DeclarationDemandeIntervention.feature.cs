@@ -11,7 +11,7 @@
 #region Designer generated code
 #pragma warning disable
 using Reqnroll;
-namespace WorkOrderManagement.Tests.Features
+namespace WorkOrderManagement.AcceptanceTests.Features
 {
     
     

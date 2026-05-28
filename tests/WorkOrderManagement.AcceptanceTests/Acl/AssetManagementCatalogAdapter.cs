@@ -1,7 +1,7 @@
 using AssetManagement.Domain;
 using WorkOrderManagement.Domain;
 
-namespace WorkOrderManagement.Tests.Acl;
+namespace WorkOrderManagement.AcceptanceTests.Acl;
 
 /// <summary>
 /// Adapter de l'Anti-Corruption Layer.
